@@ -17,7 +17,7 @@ a{
 </style>
 </head>
 
-<body onLoad="load()">
+<body>
 
 <div class="login" id="login-box">
 	<div class="top-login">
@@ -370,28 +370,30 @@ a{
   <script>
  
   var products = [
-    "img/MS1.jpg",
-    "img/MS2.jpg",
-    "img/MS3.jpg",
-    "img/MS4.jpg",
-    "img/MS5.jpg",
-    "img/MS6.jpg",
-	"img/MS7.jpg",
-    "img/MS8.jpg",
-    "img/MS9.jpg",
-    "img/MS10.jpg",
-    "img/MS11.jpg",
-    "img/MS12.jpg",
-    "img/MS13.jpg",
-    "img/MS14.jpg",
-    "img/MS15.png",
-    "img/MS16.jpg",
-    "img/MS17.jpg",
-    "img/MS18.jpg",
+    "img/1.jpg",
+    "img/2.jpg",
+    "img/3.jpg",
+    "img/4.jpg",
+    "img/5.jpg",
+    "img/6.jpg",
+	"img/7.jpg",
+    "img/8.jpg",
+    "img/9.jpg",
+    "img/10.jpg",
+    "img/11.jpg",
+    "img/12.jpg",
+    "img/13.jpg",
+    "img/14.jpg",
+    "img/15.jpg",
+    "img/16.jpg",
+    "img/17.jpg",
+    "img/18.jpg",
 	];
-function  load(){ 
-	for(var i = 0; i<18;i++){
-    document.getElementById("divSearchResult").innerHTML += '<div class="col-md-4 p-box">\
+window.onload = function(e) {
+			var result="";
+			for(var i=0; i<products.length; i++)
+			{  
+			  result += '<div class="col-md-4 p-box">\
                         	<div class="box">\
                             	<a href="product.html"><img src="'+products[i]+'" /></a>\
                                 <div>\
@@ -400,8 +402,9 @@ function  load(){
                             	</div>\
                             </div>\
                         </div>      ';
-	}
-}
+			}
+			document.getElementById("divSearchResult").innerHTML=result;
+        };
 </script>
 
     <!--main-->
@@ -427,7 +430,7 @@ function  load(){
                         	<li>Nợi Bán</li>
                         	<li><input type="checkbox" value="" /><a href="#">Hà Nội</a></li>
                             <li><input type="checkbox" value="" /><a href="#">TP HCM</a></li>
-                            <li><input type="checkbox" value="" /><a href="#">Đà Nẳng</a></li>
+                            <li><input type="checkbox" value="" /><a href="#">Đà Nẵng</a></li>
                             <li><input type="checkbox" value="" /><a href="#">Cần Thơ</a></li>
                         </ul>
                      </div>
@@ -477,7 +480,6 @@ function  load(){
         <div class="footer-1"><a href="#">Liên hệ</a></div>
         <div class="footer-1"><a href="#">Quảng cáo</a></div>
     </div>
-
 
 </body>
 </html>
