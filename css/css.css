@@ -49,6 +49,7 @@ a, a:visited, a:active{
     left:55%;
     margin-left:-300px;
 }
+
 		
 .login .login_title
 {
@@ -195,16 +196,20 @@ body{
 	margin-top:25px;
 	height:32px;
 	border-radius:5px;
-		border:1px solid #000;
+	border:1px solid #000;
+	width:95%;
 }
 
 .search button{
 	margin-right:8px;
 	border:0px;
+	padding-top:8px;
 	background-color:#FFF;
 	}
 
 .search form input{
+	width:94%;
+	float:left;
 	height:30px;
 	padding-left:10px;
 	outline:none;
@@ -225,19 +230,27 @@ body{
 }
 #p-account li:hover .sub-account{
 	display:block;
-	z-index:9999;
+	z-index:9999;		
 	background-color:#FFF;
 	}
 #p-account li{
 	position:relative;
+	}													
+.sub-account div{
+	padding-left:10px;
+	height: 35px;
+	padding-top:5px;
+    background-color: black;
+    color: white;
+	text-transform: uppercase;
 	}
 .sub-account{
 	margin-left:-60px;
 	width:150px;
-	height:100px;
+	height:135px;
 	display:none;
 	position:absolute;
-}
+}	
 .sub-account li{
 	text-align:center;
 	}

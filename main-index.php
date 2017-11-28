@@ -1,13 +1,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/css.css" />
 <?php
 include 'connect.php';
 
 $db = new DataAccessHelper;
 $db ->connect();
+//output database
 $export = $db ->executeQuery("SELECT * FROM products order by ID DESC");
+
+//output search
 if(isset($_POST['search'])){
 $search = $_POST['search'];
 $export = $db ->executeQuery("SELECT * FROM products where ( Place like '%$search%' ) or (Price = '$search') or (Gender = '$search') order by ID DESC");
+}
+
+if(isset($_POST['hanoi'])){
+$export = $db ->executeQuery("SELECT * FROM products where Place = 'Hà Nội' order by ID DESC");
+}
+if(isset($_POST['tphcm'])){
+$export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' order by ID DESC");
+}
+if(isset($_POST['danang'])){
+$export = $db ->executeQuery("SELECT * FROM products where Place = 'Đà Nẵng' order by ID DESC");
+}
+if(isset($_POST['cantho'])){
+$export = $db ->executeQuery("SELECT * FROM products where Place = 'Cần Thơ' order by ID DESC");
+}
+if(isset($_POST['tphcm']) && isset ($_POST['hanoi']) ){
+$export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' or Place = 'Hà Nội' order by ID DESC");
 }
 ?>
 
@@ -24,7 +44,7 @@ $export = $db ->executeQuery("SELECT * FROM products where ( Place like '%$searc
 								while($row = mysqli_fetch_assoc($export)){
 									echo "<div class='col-md-4 p-box'>
                         					 <div class='box'>
-                           					 	<a href='product.php'><img src='".$row["ImageUrl"]."' /></a>
+                           					 	<a href='product.php?id=".$row["ID"]."'><img src='".$row["ImageUrl"]."' /></a>
                            					    <div>
                                 				<a class='a1' href='product.php'>".$row["ProductName"]."</a>
                                   			    <a class='a1' href='product.php'>".$row["Price"]." VNĐ </a>
@@ -50,13 +70,14 @@ $export = $db ->executeQuery("SELECT * FROM products where ( Place like '%$searc
             <div id= "sidebar">
             	<div class="bxh"><a href="#">BỘ LỌC TÌM KIẾM</a></div>
                 <div class="side">
+                	<form action="index.php" method="post">
                 	<div class="side-1">
                     	<ul>
                         	<li>Nợi Bán</li>
-                        	<li><input type="checkbox" value="" /><a href="#">Hà Nội</a></li>
-                            <li><input type="checkbox" value="" /><a href="#">TP HCM</a></li>
-                            <li><input type="checkbox" value="" /><a href="#">Đà Nẵng</a></li>
-                            <li><input type="checkbox" value="" /><a href="#">Cần Thơ</a></li>
+                        	<li><input type="checkbox" value="" name="hanoi"/><a href="#">Hà Nội</a></li>
+                            <li><input type="checkbox" value="" name="tphcm" /><a href="#">TP HCM</a></li>
+                            <li><input type="checkbox" value="" name="danang" /><a href="#">Đà Nẵng</a></li>
+                            <li><input type="checkbox" value="" name="cantho" /><a href="#">Cần Thơ</a></li>
                         </ul>
                      </div>
                      
@@ -93,7 +114,10 @@ $export = $db ->executeQuery("SELECT * FROM products where ( Place like '%$searc
                             <li><input type="text" style="color:#000" placeholder="Đến" /></li>
                         </ul>
                     </div>
-                    
+                    <div class="side-1">
+                    		<button style="height:40px; margin-top:30px; width:120px; margin-left:50px;" name="timkiem">ÁP DỤNG</button>
+                    </div>
+                    </form>
                 </div>
             </div>
     </div>

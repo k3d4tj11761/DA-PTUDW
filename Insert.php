@@ -1,4 +1,10 @@
+
+
 <?php
+if(isset($_GET['ac'])){
+	$tam = $_GET['ac'];
+	}
+if($tam == 'insertproduct'){
   include 'connect.php';
 
 	$ProductName = $_POST["Product_Name"];
@@ -17,7 +23,28 @@ $db ->connect();
 $db ->executeNonQuery("INSERT INTO products(ProductName,Price,Category,ImageUrl,Gender,Place,Shiping,Discount,Statuss)
  VALUES ('$ProductName',$Price,'$Category','$ImageUrl','$Gender','$Place','$Shiping','$Discount','$Statuss')");
 $db ->close();	
-echo "Inserted 1 record to db";	
+	
 header('Location: Manage.php'); 
+}
+
+if($tam == 'insertaccount'){
+	echo "acc";
+  	include 'connect.php';
+
+	$UserName = $_POST["User_Name"];
+	$PassWord = $_POST["Pass_Word"];
+	$SDT = $_POST["SDT"];
+	$Email = $_POST["Email"];
+	$DiaChi = $_POST["Dia_Chi"];
+
+	
+$db = new DataAccessHelper;
+$db ->connect();
+$db ->executeNonQuery("INSERT INTO account(UserName,PassWord,SDT,Email,DiaChi,CreatedDate,ModifiedDate)
+ VALUES ('$UserName','$PassWord','$SDT','$Email','$DiaChi',now(),now())");
+$db ->close();	
+ 
+}
 ?>
+
 

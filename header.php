@@ -1,26 +1,5 @@
-
-
-	<div class="login" id="login-box">
-	<div class="top-login">
-    	<span class="left-login">ĐĂNG NHẬP</span>
- 		<span class="right-login"><a href="#">ĐĂNG KÝ</a></span>
- 	</div>
-    <div class="clear"></div>
-	<form class="login-content" action="#" method="post"><label class="username">
-	 <input id="username" type="text" autocomplete="on" name="username" placeholder="Email/Số Điện Thoại/Mậu Khẩu" value=""	 />
- 	</label>
- 	<label class="password">
-
-	 <input id="password" type="password" name="password" placeholder="Mật Khẩu" value="" />
-	 </label>
-	 <label class="login1">
-	 <a class="forgot" href="#">Quên mật khẩu?</a>
- 	</label>
- 	<label class="log">
-	 <a href="#" class="trolai">Trở Lại</a>
-	 <button class="button" type="button">Đăng nhập</button>
- 	</label>
- 	</form></div>
+<link rel="stylesheet" href="css/css.css" />
+<?php include 'account.php'; ?>
 <!-- header -->
     <div class="header">	
      	<div class="header-left" >
@@ -56,14 +35,30 @@
                 </div>
             </div>
             
+           
+            
             <div  id="p-account">
             <ul>
            		<li class="account"><a href="#"><i  class="fa fa-user fa-2x" aria-hidden="true"></i></a>
-                    <ul class="sub-account">
-                    	<li><a class="login-window" href="#login-box">ĐĂNG NHẬP</a></li>
+                	
+                     <?php
+						if(isset($_COOKIE['User_Name'])){
+							echo '  <ul class="sub-account">
+										<div>XIN CHÀO '.$_COOKIE['User_Name'].'!</div>
+                    					<li><a href="#">TÀI KHOẢN</a></li>
                         	
-                        <li><a href="#">ĐĂNG KÝ</a></li>
-                    </ul>
+                        				<li><a href="account-xuli.php?dx=dangxuat">ĐĂNG XUẤT</a></li>
+                    				</ul>';
+						}
+						else
+							echo '
+                   					 <ul class="sub-account">
+									 	 <div>Xin Chào</div>
+                    			  		 <li><a class="login-window" href="#login-box-dn">ĐĂNG NHẬP</a></li>
+                        		 
+                      					 <li><a class="login-window" href="#login-box-dk">ĐĂNG KÝ</a></li>
+                    				 </ul> ';
+					?>
                 </li>
                 
                 <li class="bag"><a href="giohang.php"><i  class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i></a></li>

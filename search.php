@@ -10,8 +10,6 @@ $export = $db ->executeQuery("SELECT * FROM products where ( Place like '%$searc
 	
 ?>
 
-
-
    <!--main-->
     <div class="main">
   			<div class="main-conten">

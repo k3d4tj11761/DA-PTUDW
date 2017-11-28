@@ -1,3 +1,15 @@
+ <?php
+ include 'connect.php';
+
+	$db = new DataAccessHelper;
+	$db ->connect();
+	$id_get = $_GET['id'];
+	$sqll = $db ->executeQuery("SELECT * FROM products where ID = $id_get");
+	$row = mysqli_fetch_assoc($sqll);
+ ?>
+ 
+ 
+ 
  <!--main-->
     <div class="main">
   			<div class="main-conten">
@@ -14,7 +26,7 @@
                         </ul>
                     </div>
                     <div id="p0" class="product-4">
-                    	<a href="#"><img src="img/1.jpg" /></a>
+                    	<a href="#"><img src="<?php echo $row["ImageUrl"] ?>" /></a>
                     </div>
                 </div>
                 <div class="product-5">
@@ -103,3 +115,6 @@
     </div>
     
     <div class="clear"></div>
+    <?php
+	$db->close();
+	 ?>

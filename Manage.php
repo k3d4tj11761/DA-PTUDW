@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
-<title>Untitled Document</title>
+<title>Manage</title>
 <style>
 .link a{
 	color:blue;
