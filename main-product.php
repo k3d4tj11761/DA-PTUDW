@@ -1,13 +1,12 @@
+ 
  <?php
- include 'connect.php';
-
+	/* include 'connect.php';
 	$db = new DataAccessHelper;
-	$db ->connect();
-	$id_get = $_GET['id'];
-	$sqll = $db ->executeQuery("SELECT * FROM products where ID = $id_get");
+	$db->connect(); */
+	$id_get_index = $_GET['id_index'];
+	$sqll = $db ->executeQuery("SELECT * FROM products where ID = $id_get_index");
 	$row = mysqli_fetch_assoc($sqll);
  ?>
- 
  
  
  <!--main-->
@@ -18,11 +17,11 @@
                	<div class="product-2">
                 	<div class="product-3">
                     	<ul>
-                        	<li id="p1"><a href="#"><img src="img/1.jpg" /></a></li>
-                            <li id="p2"><a href="#"><img src="img/2.jpg" /></a></li>
-                            <li id="p3"><a href="#"><img src="img/3.jpg" /></a></li>
-                            <li id="p4"><a href="#"><img src="img/4.jpg" /></a></li>
-                            <li id="p5"><a href="#"><img src="img/5.jpg" /></a></li>
+                        	<li id="p1"><a href="#"><img src="<?php echo $row["ImageUrl"] ?>" /></a></li>
+                            <li id="p2"><a href="#"><img src="<?php echo $row["ImageUrl_1"] ?>" /></a></li>
+                            <li id="p3"><a href="#"><img src="<?php echo $row["ImageUrl_2"] ?>" /></a></li>
+                            <li id="p4"><a href="#"><img src="<?php echo $row["ImageUrl_3"] ?>" /></a></li>
+                            <li id="p5"><a href="#"><img src="<?php echo $row["ImageUrl_4"] ?>" /></a></li>
                         </ul>
                     </div>
                     <div id="p0" class="product-4">
@@ -30,15 +29,9 @@
                     </div>
                 </div>
                 <div class="product-5">
-                	<p class="tieude">Giày Thể Thao 1</p>
-                    <p class="gia">100.000 VNĐ</p>
-                    <p class="gioithieu">Trông trẻ trung và năng động hơn với giày thể thao thiết kế bởi Native. Giày có thiết kế đơn giản, màu sắc trơn dễ 					  										phối cùng trang phục.<br />
-
-										- Chất liệu EVA<br />
-										- Giày mũi tròn<br />
-										- Thiết kế thắt dây<br />
-										- Đục lỗ họa tiết tạo cảm giác thông thoáng<br />
-										- Mặt lót in tên thương hiệu</p>
+                	<p class="tieude"><?php echo $row["ProductName"] ?></p>
+                    <p class="gia"><?php echo $row["Price"] ?> VNĐ</p>
+                    <p class="gioithieu"><?php echo $row["Introduce"] ?></p>
                 </div>
                 <div class="clear"></div>
                 <div class="product-6">
@@ -54,10 +47,10 @@
                         </select> 
                     </div>
                     <div class="p-them">
-                    	<div class="them"><a href="#">CHO VÀO GIỎ HÀNG</a></div>
+                    	<div class="them"><a href="giohang.php?id_product=<?php echo $row['ID'] ?>">CHO VÀO GIỎ HÀNG</a></div>
                      </div>
                     <div class="p-muangay">
-                    	<div class="muangay"><a href="#">MUA NGAY</a></div>
+                    	<div class="muangay"><a href="giohang.php?id_product=<?php echo $row['ID'] ?>">MUA NGAY</a></div>
                      </div>
                 </div>
             </div>
@@ -118,3 +111,77 @@
     <?php
 	$db->close();
 	 ?>
+	 <script>
+  $(document).ready(function() {
+    $('a.login-window').click(function() {
+        //lấy giá trị thuộc tính href - chính là phần tử "#login-box"
+        var loginBox = $(this).attr('href');
+ 
+        //cho hiện hộp đăng nhập trong 300ms
+        $(loginBox).fadeIn(300);
+ 
+        // thêm phần tử id="over" vào sau body
+        $('body').append('<div id="over">');
+        $('#over').fadeIn(300);
+ 
+        return false;
+ });
+ 
+ // khi click đóng hộp thoại
+ $(document).on('click', "a.trolai, #over", function() {
+       $('#over, .login').fadeOut(300 , function() {
+           $('#over').remove();
+       });
+      return false;
+ });
+});
+  </script>
+<script>
+
+
+$(document).ready(function(){
+    $("#p1").hover(function(){
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl"] ?>" />';  
+    },
+    function(){
+        
+    }); 
+});
+
+$(document).ready(function(){
+    $("#p2").hover(function(){
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_1"] ?>" />';  
+    },
+    function(){
+        
+    }); 
+});
+
+$(document).ready(function(){
+    $("#p3").hover(function(){
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_2"] ?>" />';  
+    },
+    function(){
+        
+    }); 
+});
+
+$(document).ready(function(){
+    $("#p4").hover(function(){
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_3"] ?>" />';  
+    },
+    function(){
+        
+    }); 
+});
+
+$(document).ready(function(){
+    $("#p5").hover(function(){
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_4"] ?>" />';  
+    },
+    function(){
+        
+    }); 
+});
+
+</script>

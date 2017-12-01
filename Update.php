@@ -114,6 +114,27 @@
 			<label for="txStatuss">Statuss</label>
 			<input type="text" class="form-control" name="Statuss" id="txtStatuss" value="<?php echo $row["Statuss"] ?>">
 		</div>
+        <div class="form-group">
+			<label for="txStatuss">Introduce</label>
+			<input type="text" class="form-control" name="Introduce" id="txtIntroduce" value="<?php echo $row["Introduce"] ?>">
+		</div>
+        <div class="form-group">
+			<label for="txStatuss">ImageUrl_1</label>
+			<input type="text" class="form-control" name="ImageUrl_1" id="txtImageUrl_1" value="<?php echo $row["ImageUrl_1"] ?>">
+		</div>
+        <div class="form-group">
+			<label for="txStatuss">ImageUrl_2</label>
+			<input type="text" class="form-control" name="ImageUrl_2" id="txtImageUrl_2" value="<?php echo $row["ImageUrl_2"] ?>">
+		</div>
+        <div class="form-group">
+			<label for="txStatuss">ImageUrl_3</label>
+			<input type="text" class="form-control" name="ImageUrl_3" id="txtImageUrl_3" value="<?php echo $row["ImageUrl_3"] ?>">
+		</div>
+        <div class="form-group">
+			<label for="txStatuss">ImageUrl_4</label>
+			<input type="text" class="form-control" name="ImageUrl_4" id="ImageUrl_4" value="<?php echo $row["ImageUrl_4"] ?>" >
+		</div>
+        
 		</div>
 		<div class="input-group-btn">
 			<button class="btn btn-danger" name="update" type="submit">UPDATE</button>

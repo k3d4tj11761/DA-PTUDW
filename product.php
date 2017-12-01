@@ -44,7 +44,7 @@ a{
 
 $(document).ready(function(){
     $("#p1").hover(function(){
-       document.getElementById("p0").innerHTML = '<a href="#"><img src="img/1.jpg" />';  
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_1"] ?>" />';  
     },
     function(){
         
@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#p2").hover(function(){
-       document.getElementById("p0").innerHTML = '<a href="#"><img src="img/2.jpg" />';  
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_2"] ?>" />';  
     },
     function(){
         
@@ -62,7 +62,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#p3").hover(function(){
-       document.getElementById("p0").innerHTML = '<a href="#"><img src="img/3.jpg" />';  
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_3"] ?>" />';  
     },
     function(){
         
@@ -71,7 +71,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#p4").hover(function(){
-       document.getElementById("p0").innerHTML = '<a href="#"><img src="img/4.jpg" />';  
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_4"] ?>" />';  
     },
     function(){
         
@@ -80,7 +80,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#p5").hover(function(){
-       document.getElementById("p0").innerHTML = '<a href="#"><img src="img/5.jpg" />';  
+       document.getElementById("p0").innerHTML = '<a href="#"><img src="<?php echo $row["ImageUrl_5"] ?>" />';  
     },
     function(){
         

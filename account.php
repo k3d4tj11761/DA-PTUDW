@@ -3,17 +3,22 @@
 	<div class="login" id="login-box-dn">
 	<div class="top-login">
     	<span class="left-login">ĐĂNG NHẬP</span>
- 		<span class="right-login"><a class="login-window" href="#login-box-dk">ĐĂNG KÝ</a></span>
+ 		<span class="right-login"><a class="login-window" href="#login-box-dk"></a></span>
  	</div>
     <div class="clear"></div>
 	<form class="login-content" action="account-xuli.php" method="post">
     <label class="username">
-	 <input id="username" type="text" autocomplete="on" name="User_Name" placeholder="Tên Đăng Nhập" value=""	 />
+	 <input id="username" type="text" autocomplete="on" name="User_Name" placeholder="Tên Đăng Nhập" />
  	</label>
  	<label class="password">
 
-	 <input id="password" type="password" name="Pass_Word" placeholder="Mật Khẩu" value="" />
+	 <input id="password" type="password" name="Pass_Word" placeholder="Mật Khẩu" />
 	 </label>
+       				<?php
+						if(isset($_SESSION['UserName'])){
+							echo 'Mật khẩu không đúng';
+						}
+					 ?>	
 	 <label class="login1">
 	 <a class="forgot" href="#">Quên mật khẩu?</a>
  	</label>
@@ -27,7 +32,7 @@
  	<div class="login" style=" height:450px; top:15%;" id="login-box-dk">
 	<div class="top-login">
     	<span class="left-login">ĐĂNG KÝ</span>
- 		<span class="right-login"><a class="login-window" href="#login-box-dn">ĐĂNG NHẬP</a></span>
+ 		<span class="right-login"><a class="login-window" href="#login-box-dn"></a></span>
  	</div>
     <div class="clear"></div>
 	<form class="login-content" action="Insert.php?ac=insertaccount" method="post">

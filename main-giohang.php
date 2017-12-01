@@ -1,3 +1,8 @@
+	<?php
+	 /* include 'connect.php';
+		$db = new DataAccessHelper;
+		$db->connect(); */
+	?>
     <!--main-->
     <div class="main">
   			<div id="main-conten1">
@@ -9,15 +14,28 @@
                 			<li>Tên Sản Phẩm</li>
                     		<li>Đơn Giá</li>
                     		<li>Số Lượng</li>
+                            <li style="width:30px"></li>
                    	 	</ul>
               	 	</div>
                     
-               		<div class="p-giohang">
+               		
+                    <?php
+						$i = 0;
+						$ArrayPrice[$i] = 0;
+						foreach($_SESSION as $name => $value){
+							$sqll = $db->executeQuery("SELECT * FROM products where ID = $value ");
+								if(mysqli_num_rows($sqll) > 0){
+									while ($row = mysqli_fetch_assoc($sqll)){
+										$ArrayPrice[$i] = $row["Price"];
+										$i++;
+										echo' 
+					
+                    <div class="p-giohang">
                 		<ul>
-                        	<li><img src="img/1.jpg"</li>
-                			<li class="g1">Giày Thể Thao 1</li>
-                    		<li class="g1">100.000 VNĐ</li>
-                    		<li class="g1">
+                        	<a href="product.php?id='.$row['ID'].'"><li><img src="'.$row['ImageUrl'].'"</li></a>
+                			<li class="g1">'.$row['ProductName'].'</li>
+                    		<li class="g2">'.$row['Price'].' VNĐ</li>
+                    		<li class="g2">
                             	<select>
                                 	<option>1</option>
                                     <option>2</option>
@@ -26,9 +44,19 @@
                                     <option>5</option>
                             	</select>
                             </li>
+							<a style="color:black" href="giohang-xuli.php?delete_cart='.$row['ID'].'"><li class="g1" style="width:30px"><i class="fa fa-times" aria-hidden="true"></i></li></a>
                     	</ul>
-               		</div>
-                
+               		</div>';
+								}
+							}
+						}
+					$tongtien = 0;
+					for($i = 0;$i<count($ArrayPrice);$i++){
+					$tongtien = $ArrayPrice[$i] + $tongtien ;
+					}
+					
+					
+                	?>
              </div>
                 
                 
@@ -37,7 +65,7 @@
                 </div>
             	<div class="p-tong">
                 	<p>TỔNG CỘNG</p>
-                    <p>100.000 VNĐ</p>
+                    <p><?php echo $tongtien; ?></p>
                 </div>
                 <div class="p-tong">
                 	<p>PHÍ VẬN CHUYỂN</p>
@@ -45,16 +73,19 @@
                 </div>
                 <div class="p-tong">
                 	<p>GRAND TOTAL</p>
-                    <p>1.387.500 VNĐ</p>
+                    <p><?php echo $tongtien; ?></p>
                 </div>
                 <div class="clear"></div>
                 <div class="p-tong1">
                 	<div class="tt"><a href="#">THANH TOÁN</a></div>
                 </div>
                 <div class="p-tong1">	
-                	<div class="ctsp"><a href="#">CHỌN THÊM SẢN PHẨM</a></div>
+                	<div class="ctsp"><a href="index.php">CHỌN THÊM SẢN PHẨM</a></div>
                 </div>
            </div>
     </div>
     
     <div class="clear"></div>
+    <?php
+	 $db->close();
+	?>

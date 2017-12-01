@@ -15,9 +15,14 @@
 	$Shiping = $_POST["Shiping"];
 	$Discount = $_POST["Discount"];
 	$Statuss = $_POST["Statuss"];
+	$Introduce = $_POST["Introduce"];
+	$ImageUrl_1 = $_POST["ImageUrl_1"];
+	$ImageUrl_2 = $_POST["ImageUrl_2"];
+	$ImageUrl_3 = $_POST["ImageUrl_3"];
+	$ImageUrl_4 = $_POST["ImageUrl_4"];
 	$id_get = $_GET['id'];
 	
-	$db ->executenonQuery("UPDATE products SET ProductName = '$ProductName', Price = $Price, Category = '$Category', 					ImageUrl = '$ImageUrl', Gender = '$Gender', Place = '$Place', Shiping = '$Shiping', Discount = '$Discount', Statuss = '$Statuss' WHERE ID = '$id_get';");	
+	$db ->executenonQuery("UPDATE products SET ProductName = '$ProductName', Price = $Price, Category = '$Category', 					ImageUrl = '$ImageUrl', Gender = '$Gender', Place = '$Place', Shiping = '$Shiping', Discount = '$Discount', Statuss = '$Statuss',Introduce = '$Introduce',ImageUrl_1 = '$ImageUrl_1',ImageUrl_2 = '$ImageUrl_2',ImageUrl_3 = '$ImageUrl_3',ImageUrl_4 = '$ImageUrl_4' WHERE ID = '$id_get';");	
 		}
 	else{
 	$id_get = $_GET['id'];

@@ -1,34 +1,62 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/css.css" />
 <?php
-include 'connect.php';
-
+/* include 'connect.php';
 $db = new DataAccessHelper;
-$db ->connect();
-//output database
-$export = $db ->executeQuery("SELECT * FROM products order by ID DESC");
+$db->connect(); */
+//output database + Phan Trang
+
+if(isset($_GET['page'])){
+$start = $_GET['page'];
+}
+else{
+ $start = '';
+}
+if($start == 1 || $start == ''){
+	$start = 0;	
+	}
+else{
+	$start = ($start*12)-12;
+}
+$export = $db ->executeQuery("SELECT * FROM products Limit $start,12");
 
 //output search
 if(isset($_POST['search'])){
 $search = $_POST['search'];
-$export = $db ->executeQuery("SELECT * FROM products where ( Place like '%$search%' ) or (Price = '$search') or (Gender = '$search') order by ID DESC");
+$export = $db ->executeQuery("SELECT * FROM products where ( Place like '%$search%' ) or (Price = '$search') or (Gender  like '%$search%') or (ProductName like '%$search%') or (Category like '%$search%') or (Shiping like '%$search%') or (Discount like '%$search%') or (Statuss like '%$search%') ");
 }
 
-if(isset($_POST['hanoi'])){
-$export = $db ->executeQuery("SELECT * FROM products where Place = 'Hà Nội' order by ID DESC");
-}
-if(isset($_POST['tphcm'])){
-$export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' order by ID DESC");
-}
-if(isset($_POST['danang'])){
-$export = $db ->executeQuery("SELECT * FROM products where Place = 'Đà Nẵng' order by ID DESC");
-}
-if(isset($_POST['cantho'])){
-$export = $db ->executeQuery("SELECT * FROM products where Place = 'Cần Thơ' order by ID DESC");
-}
-if(isset($_POST['tphcm']) && isset ($_POST['hanoi']) ){
-$export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' or Place = 'Hà Nội' order by ID DESC");
-}
+//if (isset($_POST['Place'])) {	
+//	     foreach($_POST['Place'] as $key => $value) {
+         	//Xử lý các phần tử được chọn
+		//print_r ($_POST['Place']);
+		//print_r ($_POST['Shiping']);
+		//	echo $value;
+		//	echo 1;
+		
+		// Sidebar-Search
+			if(isset($_POST['Place'][0])){
+				$tam = $_POST['Place'][0];
+				$export = $db ->executeQuery("SELECT * FROM products where Place = '$tam' Limit");
+			}
+			if(isset($_POST['Place'][1])){
+				$tam = $_POST['Place'][0];
+				$tam1 = $_POST['Place'][1];
+				$export = $db ->executeQuery("SELECT * FROM products where Place = '$tam' or Place = '$tam1'");
+			}
+			if(isset($_POST['Place'][2])){
+				$tam = $_POST['Place'][0];
+				$tam1 = $_POST['Place'][1];
+				$tam2 = $_POST['Place'][2];
+				$export = $db ->executeQuery("SELECT * FROM products where Place = '$tam' or Place = '$tam1' or Place = '$tam2' ");
+			}
+			if(isset($_POST['Place'][3])){
+				$export = $db ->executeQuery("SELECT * FROM products");
+			}
+			
+   //     }
+ //}
+
 ?>
 
 
@@ -44,10 +72,11 @@ $export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' or P
 								while($row = mysqli_fetch_assoc($export)){
 									echo "<div class='col-md-4 p-box'>
                         					 <div class='box'>
-                           					 	<a href='product.php?id=".$row["ID"]."'><img src='".$row["ImageUrl"]."' /></a>
+                           					 	<a href='product.php?id_index=".$row["ID"]."'><img src='".$row["ImageUrl"]."' /></a>
                            					    <div>
+												<a class='a1' href='product.php'>".$row["Price"]." VNĐ </a>
                                 				<a class='a1' href='product.php'>".$row["ProductName"]."</a>
-                                  			    <a class='a1' href='product.php'>".$row["Price"]." VNĐ </a>
+                                  			   
                            				 		</div>
                             				 </div>
                        					  </div>     " ;
@@ -62,9 +91,16 @@ $export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' or P
                  </div>
                  
                   <div class="clear"></div>
-                  
-              
-               	
+                  <!-- Phan Trang -->
+                <div>Trang: 
+				<?php
+					$export = $db ->executeQuery("SELECT * FROM products");
+					$page =  ceil(mysqli_num_rows($export)/12);
+					for($i = 1; $i <= $page;$i++ ){
+						echo "<a class='page' href='index.php?page=$i'>".$i."</a>";
+					}
+				 ?>              
+               	</div>
             </div>
                 
             <div id= "sidebar">
@@ -74,19 +110,19 @@ $export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' or P
                 	<div class="side-1">
                     	<ul>
                         	<li>Nợi Bán</li>
-                        	<li><input type="checkbox" value="" name="hanoi"/><a href="#">Hà Nội</a></li>
-                            <li><input type="checkbox" value="" name="tphcm" /><a href="#">TP HCM</a></li>
-                            <li><input type="checkbox" value="" name="danang" /><a href="#">Đà Nẵng</a></li>
-                            <li><input type="checkbox" value="" name="cantho" /><a href="#">Cần Thơ</a></li>
+                        	<li><input type="checkbox" value="Hà Nội" name="Place[]"/><a href="#">Hà Nội</a></li>
+                            <li><input type="checkbox" value="TP HCM" name="Place[]" /><a href="#">TP HCM</a></li>
+                            <li><input type="checkbox" value="Đà Nẵng" name="Place[]" /><a href="#">Đà Nẵng</a></li>
+                            <li><input type="checkbox" value="Cần Thơ" name="Place[]" /><a href="#">Cần Thơ</a></li>
                         </ul>
                      </div>
                      
                     <div class="side-1">
                     	<ul>
                         	<li>Đơn Vị Vận Chuyển</li>
-                        	<li><input type="checkbox" value="" /><a href="#">Giao Hàng Tiết Kiệm</a></li>
-                            <li><input type="checkbox" value="" /><a href="#">Giao Hàng Nhanh</a></li>
-                            <li><input type="checkbox" value="" /><a href="#">Viettel Post</a></li>         
+                        	<li><input type="checkbox" value="Giao Hàng Tiết Kiệm" name="Shiping[]" /><a href="#">Giao Hàng Tiết Kiệm</a></li>
+                            <li><input type="checkbox" value="Giao Hàng Nhanh" name="Shiping[]" /><a href="#">Giao Hàng Nhanh</a></li>
+                            <li><input type="checkbox" value="Viettel Post" name="Shiping[]" /><a href="#">Viettel Post</a></li>         
                         </ul>
 					</div>
                     
@@ -123,6 +159,7 @@ $export = $db ->executeQuery("SELECT * FROM products where Place = 'TP HCM' or P
     </div>
     
     <div class="clear"></div>
+    
     <?php
 	$db ->close();
 	 ?>

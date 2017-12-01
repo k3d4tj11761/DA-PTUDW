@@ -1,3 +1,15 @@
+<?php session_start(); ?>
+<?php
+include 'connect.php';
+$db = new DataAccessHelper;
+$db->connect();
+if(isset($_GET['id_product']) && !empty($_GET['id_product'])){
+	$id_get_product = $_GET['id_product'];
+	$_SESSION['ADD_'.$id_get_product] = $id_get_product;
+	/* print_r($_SESSION);
+	echo"</pre>"; */
+}
+?>
 <link rel="stylesheet" href="css/css.css" />
 <?php include 'account.php'; ?>
 <!-- header -->
@@ -42,9 +54,9 @@
            		<li class="account"><a href="#"><i  class="fa fa-user fa-2x" aria-hidden="true"></i></a>
                 	
                      <?php
-						if(isset($_COOKIE['User_Name'])){
+						if(isset($_SESSION['User_Name'])){
 							echo '  <ul class="sub-account">
-										<div>XIN CHÀO '.$_COOKIE['User_Name'].'!</div>
+										<div>XIN CHÀO '.$_SESSION['User_Name'].'!</div>
                     					<li><a href="#">TÀI KHOẢN</a></li>
                         	
                         				<li><a href="account-xuli.php?dx=dangxuat">ĐĂNG XUẤT</a></li>
@@ -61,8 +73,10 @@
 					?>
                 </li>
                 
-                <li class="bag"><a href="giohang.php"><i  class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i></a></li>
-            
+                <li class="bag"><a href="giohang.php"><i  class="fa fa-shopping-bag fa-2x" aria-hidden="true">
+                	<div class="count_cart"><b><?php echo count($_SESSION); ?></b></div>
+                </i></a></li>
+            	
         	</ul> 
             </div>
 	</div>

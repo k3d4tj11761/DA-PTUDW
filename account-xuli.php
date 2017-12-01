@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <?php
 
 include 'connect.php';
@@ -8,13 +9,14 @@ $UserName = $_POST['User_Name'];
 $PassWord = $_POST['Pass_Word'];
 $sql = $db->executeQuery("Select * from account where UserName = '$UserName' and PassWord = '$PassWord' ");
 if(mysqli_num_rows($sql) > 0){
-	setcookie('User_Name',$_POST['User_Name'],time() + 3600);
+	$_SESSION['User_Name'] = $_POST['User_Name'];
 	header("Location: index.php");
 }
-else 
-	echo "Dang Nhap That Bai";
-
-print_r($_COOKIE);
+else {
+	$_SESSION['UserName'] = $_POST['User_Name'];
+	header("Location: index.php");
+}
+print_r($_SESSION);
 echo"</pre>";
 $db->close();
 ?>
@@ -23,7 +25,7 @@ $db->close();
 		$tam = $_GET['dx'];
 		}
 	if($tam == 'dangxuat'){
-			setcookie('User_Name',$_POST['User_Name'],time() - 3600);
+			unset($_SESSION['User_Name']);
 			header('Location: index.php');
 		}
 ?>

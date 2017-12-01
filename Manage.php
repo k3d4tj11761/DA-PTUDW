@@ -33,7 +33,7 @@ ul li img{
 <body>
 
 <div><h2>Quản Lí Sản Phẩm</h2></div>
-<div class="link"><a href="Insert.html">Tạo mới đơn hàng</a></div>
+<div class="link"><a href="Insert_new.html">Tạo mới đơn hàng</a></div>
 
 <div>
 	<hr size="1px" color="#CCCCCC" />
@@ -56,7 +56,7 @@ include 'connect.php';
 
 $db = new DataAccessHelper;
 $db ->connect();
-$sqll = $db ->executeQuery("SELECT * FROM products order by ID DESC");
+$sqll = $db ->executeQuery("SELECT * FROM products");
 if(mysqli_num_rows($sqll) > 0){
 	// output data of each row
 	while($row = mysqli_fetch_assoc($sqll)){
