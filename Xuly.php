@@ -31,3 +31,5 @@
 $db ->close();
 header('Location: Manage.php');
 ?>
+
+

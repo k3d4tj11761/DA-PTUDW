@@ -1,3 +1,17 @@
+<?php
+if(isset($_SESSION['error'])){
+echo "<script> alert('{$_SESSION['error']}'); </script>";
+unset($_SESSION['error']);
+}
+
+if(isset($_SESSION['loi'])){
+echo "<script> alert('{$_SESSION['loi']}'); </script>";
+unset($_SESSION['loi']);
+}
+
+
+?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Dang Nhap -->
 	<div class="login" id="login-box-dn">
@@ -14,11 +28,7 @@
 
 	 <input id="password" type="password" name="Pass_Word" placeholder="Mật Khẩu" />
 	 </label>
-       				<?php
-						if(isset($_SESSION['UserName'])){
-							echo 'Mật khẩu không đúng';
-						}
-					 ?>	
+       					
 	 <label class="login1">
 	 <a class="forgot" href="#">Quên mật khẩu?</a>
  	</label>

@@ -1,6 +1,6 @@
 	<!-- Jquery Slider -->
     
-
+<div style="width:90%; margin:0 auto;">
     <!-- #region Jssor Slider Begin -->
     <!-- Generator: Jssor Slider Maker -->
     <!-- Source: http://www.jssor.com -->
@@ -154,3 +154,4 @@
     </div>
     <!-- #endregion Jssor Slider End -->
    
+</div>

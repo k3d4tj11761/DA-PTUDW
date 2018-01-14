@@ -3,7 +3,13 @@
 	/* include 'connect.php';
 	$db = new DataAccessHelper;
 	$db->connect(); */
+	if(isset($_GET['id_cart'])){
+	$id_get_index = $_GET['id_cart'];
+	}
+	if(isset($_GET['id_index'])){
 	$id_get_index = $_GET['id_index'];
+	}
+	if(isset($_GET['id_cart']) || isset($_GET['id_index']) )
 	$sqll = $db ->executeQuery("SELECT * FROM products where ID = $id_get_index");
 	$row = mysqli_fetch_assoc($sqll);
  ?>
@@ -36,22 +42,25 @@
                 <div class="clear"></div>
                 <div class="product-6">
                 	<div class="p-size">
-                    	<select>
-                        	<option>size</option>
-                            <option>39</option>
-                            <option>40</option>
-                            <option>41</option>
-                            <option>42</option>
-                            <option>43</option>
-                            <option>44</option>
+                    <span style="padding-left:10px">Size</span>
+                    <form method="post" action="giohang.php?id_product=<?php echo $row['ID'] ?>">
+                    	<select name="size" >
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option selected="selected" value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
                         </select> 
+                    
                     </div>
                     <div class="p-them">
-                    	<div class="them"><a href="giohang.php?id_product=<?php echo $row['ID'] ?>">CHO VÀO GIỎ HÀNG</a></div>
+                    	<button class="them"><a>CHO VÀO GIỎ HÀNG</a></button>   
                      </div>
                     <div class="p-muangay">
-                    	<div class="muangay"><a href="giohang.php?id_product=<?php echo $row['ID'] ?>">MUA NGAY</a></div>
+                    	<button class="muangay"><a href="#">MUA NGAY</a></button>
                      </div>
+                     </form>
                 </div>
             </div>
                 
@@ -110,6 +119,7 @@
     <div class="clear"></div>
     <?php
 	$db->close();
+	
 	 ?>
 	 <script>
   $(document).ready(function() {
@@ -185,3 +195,4 @@ $(document).ready(function(){
 });
 
 </script>
+

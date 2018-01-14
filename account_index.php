@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trang chủ</title>
+<title>Tài Khoản</title>
 <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 
 <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
@@ -16,24 +16,6 @@ a{
 	color:#FFF;
 }
 </style>
-
-<script>
-$(function(){
-    $('#click-search').click(function(){
-        $('#back-id').addClass('back-click');
-        $('#p-click-search').addClass('p-search-click');
-    });
-});
-
-$(function(){
-    $('#back-id').click(function(){
-        $('#p-click-search').removeClass('p-search-click');
-		 $('#back-id').removeClass('back-click');
-
-            });
-});
-</script>
-
   <script>
   $(document).ready(function() {
     $('a.login-window').click(function() {
@@ -65,10 +47,30 @@ $(function(){
 
 <body>
 <?php
-	include 'header.php';
-	include 'jquery.php';
-	include 'main-index.php';
-	include 'footer.php';
+include "header.php"; 
+?>
+<div class="main">
+       
+             <div class="sidebar-account">
+             	<div class="p-sidebar">
+                <p>TÀI KHOẢN</p>
+             	<ul>
+                    <li><a href="account_index.php">Tài khoản của tôi</a></li>
+                    <li><a href="account_index.php?ktdh">Kiểm tra đơn hàng</a></li>
+                    <li><a href="#">Đổi và trả hàng</a></li>
+                    <li><a href="#">Ví điện tử</a></li>
+                </ul>
+                </div>
+            </div>
+ <?php
+
+if(isset($_GET['ktdh'])){
+include "ktdh.php";
+}
+else
+	include "tttk.php";
+
+
 ?>
 </body>
 </html>
